@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/database/repository.dart';
 import 'package:flutter_chat_ui/models/message_model.dart';
@@ -14,8 +15,9 @@ class _ChatScreenState extends State<ChatScreen> {
   
 
   _buildMessage(Message message) {
+   if (message.texto != null) {
     final Container msg = Container(
-      margin: message.eu
+      margin: message.eu == 1
           ? EdgeInsets.only(
               top: 8.0,
               bottom: 8.0,
@@ -28,8 +30,8 @@ class _ChatScreenState extends State<ChatScreen> {
       padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
       width: MediaQuery.of(context).size.width * 0.75,
       decoration: BoxDecoration(
-        color: message.eu ? Theme.of(context).accentColor : Color(0xFFFFEFEE),
-        borderRadius: message.eu
+        color: message.eu ==1 ? Theme.of(context).accentColor : Color(0xFFFFEFEE),
+        borderRadius: message.eu == 1
             ? BorderRadius.only(
                 topLeft: Radius.circular(15.0),
                 bottomLeft: Radius.circular(15.0),
@@ -62,10 +64,9 @@ class _ChatScreenState extends State<ChatScreen> {
         ],
       ),
     );
-    if (message.eu) {
-      return msg;
-    }
-    return msg;
+  
+    return msg; }
+    return null;
   }
 
   _buildMessageComposer() {
@@ -99,17 +100,16 @@ class _ChatScreenState extends State<ChatScreen> {
             iconSize: 25.0,
             color: Theme.of(context).primaryColor,
             onPressed: () {
-              setState(() {
-                Repository().create(
+              Repository().create(
                 new Message(
-                  eu: true,
-                  horario: DateTime.now() as String,
+                  eu: 1,
+                  horario: formatDate(DateTime.now(), [H])  ,
                   texto: inputController.text,
                 )
               );
-              });
+            
 
-            },
+             },
           ),
         ],
       ),
@@ -178,6 +178,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     itemCount: mensagens.length,
                     itemBuilder: (BuildContext context, int index) {
                       final Message message = mensagens[index];
+                      if(message == null){
+                           return null;
+                      }
                       return _buildMessage(message);
                     },
                   ),

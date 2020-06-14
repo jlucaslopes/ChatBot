@@ -6,9 +6,6 @@ import 'package:flutter_chat_ui/screens/chat_screen.dart';
 class RecentChats extends StatelessWidget {
 
 Future<Message> ultimaMsg = Repository().getLast();
-  
-
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -32,8 +29,7 @@ Future<Message> ultimaMsg = Repository().getLast();
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => ChatScreen(
-                    ),
+                    builder: (_) => ChatScreen(),
                   ),
                 ),
                 child: Container(
@@ -55,6 +51,7 @@ Future<Message> ultimaMsg = Repository().getLast();
                           CircleAvatar(
                             radius: 35.0,
                             backgroundImage: AssetImage('assets/images/noun_Baby_671337.png'),
+                            backgroundColor: Colors.transparent,
                           ),
                           SizedBox(width: 10.0),
                           Column(
