@@ -20,11 +20,15 @@ class Repository {
         "HORARIO",
         "EU",
       ],
+      orderBy: "HORARIO DESC"
     );
     List<Message> mensagens = new List<Message>();
+
     for (Map i in result) {
       mensagens.add(new Message.fromMap(i));
     }
+
+
     return mensagens;
   } 
 
