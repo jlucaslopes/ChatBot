@@ -3,7 +3,7 @@ import 'package:flutter_chat_ui/database/repository.dart';
 import 'package:flutter_chat_ui/models/message_model.dart';
 import 'package:flutter_chat_ui/screens/chat_screen.dart';
 
-class RecentChats extends StatelessWidget {
+class ListagemDeConversas extends StatelessWidget {
 
 Future<Message> ultimaMsg = Repository().getLast();
   @override

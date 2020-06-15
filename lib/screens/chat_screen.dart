@@ -107,8 +107,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   texto: inputController.text,
                 )
               );
-            
-
+                build(context);
              },
           ),
         ],
