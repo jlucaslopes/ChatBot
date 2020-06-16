@@ -50,10 +50,10 @@ Future<Message> getLast() async {
         "HORARIO",
         "EU",
       ],
-      orderBy: "HORARIO"
+      orderBy: "HORARIO DESC"
     );
     if (results.length > 0) {
-      return Message.fromMap(results.last);
+      return Message.fromMap(results.first);
     } else {
       return null;
     }
